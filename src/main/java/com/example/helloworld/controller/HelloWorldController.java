@@ -19,13 +19,13 @@ public class HelloWorldController {
     public String sendGreetings() {
         boolean ping1 = pingUrl("https://bcp-ti.atlassian.net.mcas.ms/jira/");
         boolean ping2 = pingUrl("https://bcp-ti.atlassian.net/jira/");
-        return "Hello url1: " + ping1 + "url2" + ping2;
+        return "Hello url1: " + ping1 + " url2: " + ping2;
     }
 
     public boolean pingUrl(String url) {
         try {
             ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-            return response.getStatusCode() == HttpStatus.OK || response.getStatusCode() == HttpStatus.UNAUTHORIZED;
+            return response.getStatusCode() == HttpStatus.OK;
         } catch (Exception e) {
             System.out.println("error: " + e.toString());
             return false;
